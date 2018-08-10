@@ -2,23 +2,19 @@ import React from 'react'
 import { create as render } from 'react-test-renderer'
 import { renderIntoDocument, Simulate } from 'react-dom/test-utils'
 import 'jest-styled-components'
-import {
-  inc,
-  dec,
-  SlideDeck,
-  Carousel,
-  Slide,
-  Dots,
-  Root,
-  GoogleFonts
-} from '../src'
+import { inc, dec, SlideDeck } from '../src'
+import Carousel from '../src/Carousel'
+import Slide from '../src/Slide'
+import Dots from '../src/Dots'
+import Root from '../src/Root'
+import GoogleFonts from '../src/GoogleFonts'
 
 const renderJSON = el => render(el).toJSON()
 
 describe('components', () => {
   describe('Carousel', () => {
     test('renders', () => {
-      const json = renderJSON(<Carousel>Hi</Carousel>)
+      const json = renderJSON(<Carousel index={1}>Hi</Carousel>)
       expect(json).toMatchInlineSnapshot(`
 .c0 {
   overflow-x: hidden;
@@ -40,9 +36,23 @@ describe('components', () => {
   transition-timing-function: ease-out;
   -webkit-transition-duration: .3s;
   transition-duration: .3s;
-  -webkit-transform: translateX(NaN%);
-  -ms-transform: translateX(NaN%);
-  transform: translateX(NaN%);
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+@media print {
+  .c0 {
+    height: auto;
+    overflow-x: visible;
+  }
+}
+
+@media print {
+  .c1 {
+    height: auto;
+    display: block;
+  }
 }
 
 <div
@@ -60,7 +70,7 @@ describe('components', () => {
 
   describe('Slide', () => {
     test('renders', () => {
-      const json = renderJSON(<Slide>Hi</Slide>)
+      const json = renderJSON(<Slide index={1}>Hi</Slide>)
       expect(json).toMatchInlineSnapshot(`
 .c0 {
   -webkit-flex: none;
@@ -86,6 +96,16 @@ describe('components', () => {
   height: 100%;
   padding-left: 32px;
   padding-right: 32px;
+}
+
+@media print {
+  .c0 {
+    width: 100vw;
+    height: 100vh;
+    page-break-after: always;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+  }
 }
 
 @media screen and (min-width:40em) {
@@ -115,27 +135,6 @@ describe('components', () => {
     test('renders', () => {
       const json = renderJSON(<Dots index={0} length={1} />)
       expect(json).toMatchInlineSnapshot(`
-.c1 {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 4px solid transparent;
-  background-clip: padding-box;
-  border-radius: 9999px;
-  width: 8px;
-  height: 8px;
-  color: inherit;
-  opacity: 0.5;
-  margin: 0px;
-  padding: 4px;
-  background-color: currentcolor;
-}
-
-.c1:focus {
-  outline: none;
-  box-shadow: 0 0 0 1px;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -147,21 +146,6 @@ describe('components', () => {
   justify-content: center;
 }
 
-<div
-  className="c0"
->
-  <button
-    className="c1"
-    onClick={[Function]}
-    title="go to: 0"
-  />
-</div>
-`)
-    })
-
-    test('renders with index', () => {
-      const json = renderJSON(<Dots index={3} length={8} />)
-      expect(json).toMatchInlineSnapshot(`
 .c1 {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -175,7 +159,63 @@ describe('components', () => {
   opacity: 0.5;
   margin: 0px;
   padding: 4px;
-  background-color: currentcolor;
+  color: text;
+  background-color: text;
+}
+
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px;
+}
+
+@media print {
+  .c0 {
+    display: none;
+  }
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    color="text"
+    onClick={[Function]}
+    title="go to: 0"
+  />
+</div>
+`)
+    })
+
+    test('renders with index', () => {
+      const json = renderJSON(<Dots index={3} length={8} />)
+      expect(json).toMatchInlineSnapshot(`
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  border-radius: 9999px;
+  width: 8px;
+  height: 8px;
+  color: inherit;
+  opacity: 0.5;
+  margin: 0px;
+  padding: 4px;
+  color: text;
+  background-color: text;
 }
 
 .c1:focus {
@@ -196,7 +236,8 @@ describe('components', () => {
   opacity: 0.125;
   margin: 0px;
   padding: 4px;
-  background-color: currentcolor;
+  color: text;
+  background-color: text;
 }
 
 .c2:focus {
@@ -204,15 +245,10 @@ describe('components', () => {
   box-shadow: 0 0 0 1px;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+@media print {
+  .c0 {
+    display: none;
+  }
 }
 
 <div
@@ -220,41 +256,49 @@ describe('components', () => {
 >
   <button
     className="c1"
+    color="text"
     onClick={[Function]}
     title="go to: 0"
   />
   <button
     className="c1"
+    color="text"
     onClick={[Function]}
     title="go to: 1"
   />
   <button
     className="c1"
+    color="text"
     onClick={[Function]}
     title="go to: 2"
   />
   <button
     className="c1"
+    color="text"
     onClick={[Function]}
     title="go to: 3"
   />
   <button
     className="c2"
+    color="text"
     onClick={[Function]}
     title="go to: 4"
   />
   <button
     className="c2"
+    color="text"
     onClick={[Function]}
     title="go to: 5"
   />
   <button
     className="c2"
+    color="text"
     onClick={[Function]}
     title="go to: 6"
   />
   <button
     className="c2"
+    color="text"
     onClick={[Function]}
     title="go to: 7"
   />
@@ -270,6 +314,13 @@ describe('components', () => {
 .c0 {
   color: text;
   background-color: background;
+}
+
+@media print {
+  .c0 {
+    font-size: 24px;
+    height: auto;
+  }
 }
 
 <div
@@ -362,20 +413,6 @@ describe('components', () => {
   transform: translateX(0%);
 }
 
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-top: -32px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .c0 {
   font-family: system-ui,sans-serif;
   font-size: 16px;
@@ -383,7 +420,28 @@ describe('components', () => {
   width: 100vw;
   height: 100vh;
   color: #000;
-  background-color: transparent;
+  background-color: white;
+}
+
+@media print {
+  .c1 {
+    height: auto;
+    overflow-x: visible;
+  }
+}
+
+@media print {
+  .c2 {
+    height: auto;
+    display: block;
+  }
+}
+
+@media print {
+  .c0 {
+    font-size: 24px;
+    height: auto;
+  }
 }
 
 @media screen and (min-width:64em) {
@@ -396,6 +454,7 @@ describe('components', () => {
   className="c0"
   color="text"
   height="100vh"
+  step={-1}
   width="100vw"
 >
   <div
@@ -405,9 +464,6 @@ describe('components', () => {
       className="c2"
     />
   </div>
-  <div
-    className="c3"
-  />
 </div>
 `)
     })
@@ -431,24 +487,37 @@ describe('components', () => {
         <SlideDeck slides={[() => false, () => false]} />
       )
       const e = new KeyboardEvent('keydown', {
-        key: 'ArrowRight'
+        keyCode: 39
       })
       expect(root.state.index).toBe(0)
       document.body.dispatchEvent(e)
       expect(root.state.index).toBe(1)
     })
 
-    test('handles ArrowLeft keydown', () => {
+    test('handles left arrow keydown', () => {
       window.history.pushState(null, null, '/#1')
       const root = renderIntoDocument(
         <SlideDeck slides={[() => false, () => false]} />
       )
       const e = new KeyboardEvent('keydown', {
-        key: 'ArrowLeft'
+        keyCode: 37
       })
       expect(root.state.index).toBe(1)
       document.body.dispatchEvent(e)
       expect(root.state.index).toBe(0)
+    })
+
+    test('ignoreKeyEvents does not fire handle events when set to true', () => {
+      window.history.pushState(null, null, '/#1')
+      const root = renderIntoDocument(
+        <SlideDeck ignoreKeyEvents={true} slides={[() => false, () => false]} />
+      )
+      const e = new KeyboardEvent('keydown', {
+        keyCode: 37
+      })
+      expect(root.state.index).toBe(1)
+      document.body.dispatchEvent(e)
+      expect(root.state.index).toBe(1)
     })
 
     test.skip('handles hashchange events', () => {

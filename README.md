@@ -3,7 +3,7 @@
 
 ![](https://s3.amazonaws.com/jxnblk/mdx-deck.gif)
 
-[MDX][]-based presentation decks (**Beta**)
+[MDX][]-based presentation decks
 
 [![Build Status][badge]][travis]
 [![Version][version-badge]][npm]
@@ -21,9 +21,11 @@ npm i -D mdx-deck
 ```
 
 - :memo: Write presentations in markdown
-- :atom_symbol: Import and use React components
-- :nail_care: Customizable themes and components
+- :atom_symbol: Import and use [React components](#imports)
+- :nail_care: Customizable [themes](#theming) and components
 - :zero: Zero-config CLI
+- :tipping_hand_woman: [Presenter mode](#presenter-mode)
+- :notebook: [Speaker notes](#speaker-notes)
 
 [View demo](https://jxnblk.com/mdx-deck)
 
@@ -70,7 +72,7 @@ For a video introduction, see this [egghead tutorial][egghead] by [@andrewdelpre
 [egghead]: https://egghead.io/lessons/react-build-a-slide-deck-with-mdx-deck-using-markdown-react
 
 
-## Usage
+## Using MDX
 
 MDX can use Markdown syntax and render React components with JSX.
 
@@ -86,11 +88,19 @@ import { Box } from 'grid-styled'
 </Box>
 ```
 
-### Theming
+Read more about MDX syntax in the [MDX Docs][MDX].
 
-mdx-deck uses [styled-components][] for styling.
+## Theming
+
+mdx-deck uses [styled-components][] for styling, making practically any part of the presentation themeable.
 
 ### Built-in Themes
+
+<div>
+  <img src='docs/images/future.png' width='256' />
+  <img src='docs/images/comic.png' width='256' />
+  <img src='docs/images/yellow.png' width='256' />
+</div>
 
 mdx-deck includes several built-in themes to change the look and feel of the presentation.
 Export `theme` from your MDX file to enable a theme.
@@ -101,12 +111,8 @@ export { dark as theme } from 'mdx-deck/themes'
 # Dark Theme
 ```
 
-The following themes are available from `mdx-deck/themes`:
-
-- `theme`: default theme with white background
-- `dark`: black background dark theme
-- `future`: dark theme with Avenir Next
-- `condensed`: dark theme with Roboto Condensed
+MDX uses [exports](https://github.com/mdx-js/mdx#exports) as a way for files to communicate with their parent components.
+For a list of available themes see the [Themes Docs](docs/themes.md).
 
 ### Custom Themes
 
@@ -118,79 +124,34 @@ export { default as theme } from './theme'
 # Hello
 ```
 
-The theme should be an object based on [styled-system][]'s theme schema.
+The theme should be an object with fields for fonts, colors, and CSS for individual components.
+It's recommended that all custom themes extend the default theme as a base.
 
 ```js
 // example theme.js
+import { theme } from 'mdx-deck/themes'
+
 export default {
-  font: 'Georgia',
-  monospace: 'Menlo, monospace',
-  fontSizes: [
-    '0.75em', '1em', '1.5em', '2em', '3em'
-  ],
+  // extends the default theme
+  ...theme,
+  // add a custom font
+  font: 'Roboto, sans-serif',
+  // custom colors
   colors: {
-    text: '#000',
-    background: 'transparent',
-    link: '#07c',
-    heading: '#000',
-    quote: '#000',
-    pre: '#f0f',
-    preBackground: '#333',
-    code: '#f0f',
-    codeBackground: 'transparent',
-  },
-  css: {
-    // apply any styles to the root element
-  },
-  // custom CSS can be provided to any of the default components:
-  heading: {
-    fontWeight: 400
-  },
-  link: {
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    }
+    text: '#f0f',
+    background: 'black',
+    link: '#0ff',
   }
 }
 ```
 
-The following keys are available for theming:
+Read more about theming in the [Theming docs](docs/theming.md)
 
-- `font`: base font family
-- `monospace`: font family for `<pre>` and `<code>`
-- `fontSizes`: array of font sizes from smallest to largest
-- `colors`: object of colors used for MDX components
-  - `text`: root foreground color
-  - `background`: root background color
-  - `link`
-  - `heading`
-  - `blockquote`
-  - `pre`
-  - `preBackground`
-  - `code`
-  - `codeBackground`
-- `css`: root CSS object
-- `heading`: CSS for all headings
-- `h1`: CSS for `<h1>`
-- `h2`: CSS for `<h2>`
-- `h3`: CSS for `<h3>`
-- `paragraph`: CSS for `<p>`
-- `link`: CSS for `<a>`
-- `ul`: CSS for `<ul>`
-- `ol`: CSS for `<ol>`
-- `li`: CSS for `<li>`
-- `img`: CSS for `<img>`
+### Components
 
-### Custom Components
+mdx-deck includes built-in components to help with creating presentations, including a full screen Image component, the Appear component that allows stepping through parts of a single slide, and the Notes component for adding speaker notes.
 
-mdx-deck includes default components for MDX, but to provide custom components to the [MDXProvider][], export a `components` object.
-
-```mdx
-export { default as components } from './components'
-
-# Custom Components
-```
+Read more in the [components docs](docs/components.md).
 
 ### Layouts
 
@@ -226,16 +187,70 @@ export default Layout
 The layout component will wrap the MDX elements within that slide,
 which means you can use a nested ThemeProvider or target elements with CSS-in-JS.
 
-### Custom Provider
+### Built-in Layouts
 
-A custom Provider component can be exported to wrap the entire application.
-This is useful for adding custom context providers in React.
 
-```mdx
-export { default as Provider } from './Provider'
+mdx-deck includes some built-in layouts for inverting theme colors and changing the layout of a slide. Read more about [built-in layouts](docs/components.md#layouts).
 
-# Hello
+## Presenter Mode
+
+mdx-deck includes a built-in presenter mode, with a preview of the next slide and a timer.
+
+![presenter mode screenshot](docs/images/presenter-mode.png)
+
+To use presenter mode:
+
+- Open two windows in the same browser, with the same URL on two different screens. (this should work in both development and exported presentations)
+- In your window press the `Option + P` (`Alt + P`) key to enter presenter mode.
+- Display the other window on the screen for the audience to see.
+- Control the presentation from your window by using the left and right arrow keys; the other window should stay in sync
+
+### Speaker Notes
+
+Notes that only show in presenter mode can be added to any slide.
+Speaker notes can be added in one of the following two ways:
+
+**Markdown:** Use the `notes` language attribute in a fenced code block to add speaker notes.
+
+````mdx
+# Slide Content
+
+```notes
+These are only visible in presenter mode
 ```
+````
+
+**Notes Component:** Use the `Notes` component to create more complex speaker notes.
+
+````mdx
+import { Notes } from 'mdx-deck'
+
+# Slide Content
+
+<Notes>
+  Only visible in presenter mode
+</Notes>
+````
+
+## Overview Mode
+
+![Overview Mode](docs/images/overview-mode.png)
+
+When editing a slide deck, toggle overview mode with `Option + O`.
+This shows a list of all slides on the left and a preview of the current slide on the right.
+
+## Keyboard Shortcuts
+
+Key | Description
+---|---
+Left Arrow | Go to previous slide
+Right Arrow | Go to next slide
+Space | Go to next slide
+Up Arrow | Hide current step in [Appear](#appear) component
+Down Arrow | Show next step in [Appear](#appear) component
+Option + P | Toggle [Presenter Mode](#presenter-mode)
+Option + O | Toggle [Overview Mode](#overview-mode)
+Option + G | Toggle grid view mode
 
 ## Exporting
 
@@ -247,6 +262,16 @@ Add a `build` script to your `package.json` to export a presentation as HTML wit
 }
 ```
 
+### PDF Export
+
+Presentations can be exported as PDF using the CLI.
+This works well as a backup option for any unforeseen technical difficulties.
+
+```json
+"script": {
+  "pdf": "mdx-deck pdf deck.mdx"
+}
+```
 
 ## CLI Options
 
@@ -257,52 +282,14 @@ Add a `build` script to your `package.json` to export a presentation as HTML wit
 --title       Title for the HTML document
 ```
 
-## React API
+## Docs
 
-mdx-deck components can also be used in any React application, such as [create-react-app][] or [next.js][].
-
-### Webpack Loader
-
-mdx-deck uses a custom webpack loader to split MDX files into an array of slides. Use this loader to import mdx files in a webpack application.
-
-```js
-// example webpack.config.js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.mdx$/,
-        ignore: /node_modules/,
-        use: [
-          'babel-loader',
-          'mdx-deck/loader'
-        ]
-      }
-    ]
-  }
-}
-```
-
-### SlideDeck Component
-
-```js
-import React from 'react'
-import { SlideDeck } from 'mdx-deck'
-import slides from './deck.mdx'
-import theme from './theme'
-import components from './components'
-
-export default () =>
-  <SlideDeck
-    slides={slides}
-    theme={theme}
-    components={components}
-    width='100vw'
-    height='100vh'
-  />
-```
-
-View the source for other components available for use.
+- [Theming](docs/theming.md)
+- [Built-in Themes](docs/themes.md)
+- [Layouts](docs/layouts.md)
+- [Components](docs/components.md)
+- [Advanced Usage](docs/advanced.md)
+- [React API](docs/react.md)
 
 ---
 
@@ -319,12 +306,9 @@ View the source for other components available for use.
 [MIT License](LICENSE.md)
 
 [MDX]: https://github.com/mdx-js/mdx
-[MDXProvider]: https://github.com/mdx-js/mdx#mdxprovider
 [ok-mdx]: https://github.com/jxnblk/ok-mdx
 [ok-cli]: https://github.com/jxnblk/ok-mdx/tree/master/packages/ok-cli
 [Compositor x0]: https://github.com/c8r/x0
 [styled-system]: https://github.com/jxnblk/styled-system
 [styled-components]: https://github.com/styled-components/styled-components
-[create-react-app]: https://github.com/facebook/create-react-app
-[next.js]: https://github.com/zeit/next.js/
 [Spectacle]: https://github.com/FormidableLabs/spectacle

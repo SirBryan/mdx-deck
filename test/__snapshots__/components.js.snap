@@ -8,7 +8,6 @@ exports[`renders a 1`] = `
 <a
   className="c0"
   color="link"
-  target="_blank"
 />
 `;
 
@@ -33,6 +32,7 @@ exports[`renders blockquote 1`] = `
 
 exports[`renders code 1`] = `
 .c0 {
+  white-space: pre-wrap;
   font-size: 14px;
   margin: 0px;
   padding: 8px;
@@ -155,6 +155,36 @@ exports[`renders p 1`] = `
   className="c0"
   fontSize={2}
 />
+`;
+
+exports[`renders table 1`] = `
+.c0 {
+  overflow-x: auto;
+}
+
+.c1 {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.c1 td,
+.c1 th {
+  text-align: left;
+  padding-right: .5em;
+  padding-top: .25em;
+  padding-bottom: .25em;
+  border-bottom: 1px solid;
+  vertical-align: top;
+}
+
+<div
+  className="c0"
+>
+  <table
+    className="c1"
+  />
+</div>
 `;
 
 exports[`renders ul 1`] = `
