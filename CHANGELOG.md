@@ -1,6 +1,47 @@
 
 # Changelog
 
+## v1.6.2 2018-08-16
+
+- Disable swiping with mouse
+
+## v1.6.2 2018-08-15
+
+- Adjust import/export parsing in loader
+
+## v1.6.1 2018-08-15
+
+- Add missing `babel-core` dependency
+
+## v1.6.0 2018-08-14
+
+- Adds `Head` component for setting document head
+- Adds screenshot command to create a screenshot of the first slide
+- Removes the `--title` option in favor of using the `Head` component
+
+## v1.5.15 2018-08-11
+
+- Adds swipe gesture support for touchscreen devices
+- Fixes URL bug when initializing mode
+- Fixes bug previous/next buttons are not rendered
+- Prevents last slide from cycling back to the beginning
+
+## v1.5.14 2018-08-10
+
+- Adds `size` prop to Image component
+
+## v1.5.13 2018-08-10
+
+- Fixes an issue where speaker notes would incorrectly show on the wrong slide
+
+## v1.5.12 2018-08-10
+
+- Add FullScreenCode layout component
+
+## v1.5.11 2018-08-10
+
+- Adjust querystring updater to fix mode showing as undefined
+
 ## v1.5.10 2018-08-05
 
 - Update overview mode styles
