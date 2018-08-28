@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const path = require('path')
 const meow = require('meow')
+const findup = require('find-up')
 const open = require('react-dev-utils/openBrowser')
 const chalk = require('chalk')
 const remark = {
@@ -25,6 +26,8 @@ const cli = meow(`
 
   ${chalk.gray('Options')}
 
+      --webpack     Path to webpack config file
+
     ${chalk.gray('Dev server options')}
 
       -p --port     Dev server port
@@ -33,6 +36,7 @@ const cli = meow(`
     ${chalk.gray('Build options')}
 
       -d --out-dir  Output directory for exporting
+      --no-html     Disable static HTML rendering
 
     ${chalk.gray('Export options')}
 
@@ -58,6 +62,13 @@ const cli = meow(`
     },
     outFile: {
       type: 'string',
+    },
+    html: {
+      type: 'boolean',
+      default: true
+    },
+    webpack: {
+      type: 'string',
     }
   }
 })
@@ -77,6 +88,12 @@ const opts = Object.assign({
 }, config, cli.flags)
 
 opts.outDir = path.resolve(opts.outDir)
+if (opts.webpack) {
+  opts.webpack = require(path.resolve(opts.webpack))
+} else {
+  const webpackConfig = findup.sync('webpack.config.js', { cwd: opts.dirname })
+  if (webpackConfig) opts.webpack = require(webpackConfig)
+}
 
 let dev
 

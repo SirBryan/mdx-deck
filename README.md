@@ -65,12 +65,19 @@ Start the dev server:
 npm start
 ```
 
-### Video Tutorial
+## Video Tutorial
 
 For a video introduction, see this [egghead tutorial][egghead] by [@andrewdelprete](https://github.com/andrewdelprete).
 
 [egghead]: https://egghead.io/lessons/react-build-a-slide-deck-with-mdx-deck-using-markdown-react
 
+## Quick Start
+
+To create a new presentation with zero-configuration, run the following command to generate a presentation deck in a new folder:
+
+```sh
+npm init deck my-presentation-name
+```
 
 ## Using MDX
 
@@ -271,9 +278,11 @@ See more exporting options in the [Exporting Documentation](docs/exporting.md)
 -p --port     Dev server port
 --no-open     Prevent from opening in default browser
 -d --out-dir  Output directory for exporting
+--no-html     Disable static HTML rendering
 --out-file    Filename for screenshot or PDF export
 --width       Width in pixels
 --height      Height in pixels
+--webpack     Path to webpack config file
 ```
 
 ## Docs

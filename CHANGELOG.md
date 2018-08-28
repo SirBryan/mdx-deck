@@ -1,18 +1,42 @@
 
 # Changelog
 
-## v1.6.3 2018-08-18
+## v1.6.9 2018-08-27
 
-- Add respository field to package.json
-- Remove trailing comma in function arguments
+- Adds support for custom webpack configs #136
 
-## v1.6.2 2018-08-16
+## v1.6.8 2018-08-27
 
-- Disable swiping with mouse
+- Fixes `build` when using Notes or Appear components #138
+- Fixes slide number in presenter mode #142
+
+## v1.6.7 2018-08-25
+
+- Use `mkdirp` for build and export
+- Adds ability to change slide transition timing function and duration via themes
+
+## v1.6.6 2018-08-25
+
+- Left align text in code blocks #130
+- Extract static CSS on build #129
+- Adds `--no-html` option for client-side only builds
+
+## v1.6.5 2018-08-25
+
+- Adjust slide number in overview mode #122
+
+## v1.6.4 2018-08-18
+
+- Add respository field to package.json #117
+- Remove trailing comma in function arguments #115
+
+## v1.6.3 2018-08-16
+
+- Disable swiping with mouse #113
 
 ## v1.6.2 2018-08-15
 
-- Adjust import/export parsing in loader
+- Adjust import/export parsing in loader #110
 
 ## v1.6.1 2018-08-15
 
