@@ -65,11 +65,20 @@ Start the dev server:
 npm start
 ```
 
-## Video Tutorial
+## Videos & Articles
 
-For a video introduction, see this [egghead tutorial][egghead] by [@andrewdelprete](https://github.com/andrewdelprete).
+- [Egghead Tutorial][egghead] by [Andrew Del Prete](https://github.com/andrewdelprete).
+- [mdx-deck: slide decks powered by markdown and react][kcd-medium] by [Kent C. Dodds][]
+- [Make Fast & Beautiful Presentations with MDX-Deck][hw-video] by [Harry Wolff][] ([Demo][hw-demo])
+- [What is MDX][kcd-video] by [Kent C. Dodds][]
 
 [egghead]: https://egghead.io/lessons/react-build-a-slide-deck-with-mdx-deck-using-markdown-react
+[Kent C. Dodds]: https://mobile.twitter.com/kentcdodds
+[kcd-video]: http://youtu.be/d2sQiI5NFAM?a
+[kcd-medium]: https://blog.kentcdodds.com/mdx-deck-slide-decks-powered-by-markdown-and-react-bfc6d6af20da
+[hw-video]: https://www.youtube.com/watch?v=LvP2EqCiQMg&feature=youtu.be
+[hw-demo]: https://github.com/hswolff/mdx-deck-demo
+[Harry Wolff]: https://mobile.twitter.com/hswolff
 
 ## Quick Start
 
@@ -159,6 +168,14 @@ Read more about theming in the [Theming docs](docs/theming.md)
 mdx-deck includes built-in components to help with creating presentations, including a full screen Image component, the Appear component that allows stepping through parts of a single slide, and the Notes component for adding speaker notes.
 
 Read more in the [components docs](docs/components.md).
+
+### Libraries
+
+These third-party libraries are great for use with mdx-deck.
+
+- [CodeSurfer][]: React component for scrolling, zooming and highlighting code.
+
+[CodeSurfer]: https://github.com/pomber/code-surfer
 
 ### Layouts
 
@@ -250,14 +267,16 @@ This shows a list of all slides on the left and a preview of the current slide o
 
 Key | Description
 ---|---
-Left Arrow | Go to previous slide
-Right Arrow | Go to next slide
-Space | Go to next slide
-Up Arrow | Hide current step in [Appear](#appear) component
-Down Arrow | Show next step in [Appear](#appear) component
+Left Arrow | Go to previous slide (or step in [Appear][])
+Right Arrow | Go to next slide (or step in [Appear][])
+Space | Go to next slide (or step in [Appear][])
+Up Arrow | Hide current step in [Appear][] component without navigating slides
+Down Arrow | Show next step in [Appear][] component without navigating slides
 Option + P | Toggle [Presenter Mode](#presenter-mode)
 Option + O | Toggle [Overview Mode](#overview-mode)
 Option + G | Toggle grid view mode
+
+[Appear]: docs/components.md#appear
 
 ## Exporting
 
@@ -295,13 +314,20 @@ See more exporting options in the [Exporting Documentation](docs/exporting.md)
 - [Advanced Usage](docs/advanced.md)
 - [React API](docs/react.md)
 
+## Examples
+
+- [Design Systems & React][design-systems-react] by [Diana Mount](https://mobile.twitter.com/broccolini)
+- [Bringing Brazil to the Cloud, Now][brazil-now] by [Guillermo Rauch](https://mobile.twitter.com/rauchg/)
+- [Simplify React][simplify-react] by [Kent C. Dodds](https://mobile.twitter.com/kentcdodds)
+- [I Got 99 Problems but GraphQL Ain't One][99-problems] by [Sara Vieira](https://mobile.twitter.com/NikkitaFTW)
+
 ---
 
 ### Related
 
 - [MDX][]
+- [mdx-go][]
 - [ok-mdx][]
-- [ok-cli][]
 - [Compositor x0][]
 - [styled-components][]
 - [styled-system][]
@@ -311,8 +337,14 @@ See more exporting options in the [Exporting Documentation](docs/exporting.md)
 
 [MDX]: https://github.com/mdx-js/mdx
 [ok-mdx]: https://github.com/jxnblk/ok-mdx
-[ok-cli]: https://github.com/jxnblk/ok-mdx/tree/master/packages/ok-cli
 [Compositor x0]: https://github.com/c8r/x0
 [styled-system]: https://github.com/jxnblk/styled-system
 [styled-components]: https://github.com/styled-components/styled-components
 [Spectacle]: https://github.com/FormidableLabs/spectacle
+[mdx-go]: https://github.com/jxnblk/mdx-go
+
+<!-- examples -->
+[design-systems-react]: https://github-ds.now.sh/#0
+[brazil-now]: https://braziljs.now.sh
+[simplify-react]: https://simply-react.netlify.com/#0
+[99-problems]: https://99-problems-graphql-aint-one.now.sh/#0
