@@ -1,4 +1,3 @@
-
 # Contributing
 
 Thanks for contributing!
@@ -9,10 +8,11 @@ otherwise we'd love to have your help!
 
 ## Development
 
+This project is set up as a monorepo using Yarn Workspaces.
+
 1. Clone the repo
-2. Install dependencies with `npm install`
-3. Build with `npm run prepare`
-4. Run `npm start` to see the demo `docs/index.mdx`
+2. Install dependencies with `yarn`
+3. Run `yarn start` to see the demo `docs/demo.mdx`
 
 ### Watch mode
 
@@ -20,13 +20,12 @@ To watch files for changes during development, run `npm run watch`
 
 ## Testing
 
-Tests are located in the [`test/`](test) directory.
+Tests are located in each package.
 
-Run `npm test`
+Run `yarn test`
 
-- Watch Mode: `npm test -- --watch`
-- Coverage: `npm test -- --coverage`
-
+- Watch Mode: `yarn test --watch`
+- Coverage: `yarn test --coverage`
 
 ---
 
@@ -87,7 +86,7 @@ further defined and clarified by project maintainers.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at [INSERT EMAIL ADDRESS]. All
+reported by contacting the project team at jxnblk@gmail.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
@@ -103,5 +102,3 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org
-
-

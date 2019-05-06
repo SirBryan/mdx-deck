@@ -1,5 +1,196 @@
-
 # Changelog
+
+## v2.3.2 2019-04-21
+
+- Fixed issue when Head only had one element #345
+
+## v2.3.1 2019-04-21
+
+- Add experimental support for fluid aspect ratios #342
+
+## v2.3.0 2019-04-20
+
+- Refactor localStorage to use hooks #334
+- Refactor keyboard shortcuts #335
+- Refactor query string to use hooks #336
+- Refactor to use hooks #337
+  - Adds `MDXDeckState` provider component
+  - Fixes an issue with rerenders in Gatsby theme
+  - Adjusts styles in grid mode
+  - Refactors `useSteps` to use effect hook
+
+## v2.2.3 2019-04-20
+
+- Refactor Head component #329
+
+## v2.2.2 2019-04-20
+
+- Fix typos #333
+- Refactor themes for better bundle sizes #328
+
+## v2.2.1 2019-04-15
+
+- Add support for page up/down keys #319
+- Fix: remove global styles from Embed component #331
+
+## v2.2.0 2019-04-13
+
+- Add Embed component #323
+- Adjust context passed to Slide component
+- Add default props to Slide to show all Appear steps
+- Adds header and footer components for shadowing in Gatsby theme
+- Refactor and clean up code
+
+## v2.1.4 2019-04-12
+
+- Add `mdx` option to Gatsby theme #325
+
+## v2.1.3 2019-04-12
+
+- Update docs for Gatsby theme #324
+
+## v2.1.2 2019-04-12
+
+- Bump dependencies to MDX 1.0.0 #322
+
+## v2.1.1 2019-04-11
+
+- Add support for single deck mode in Gatsby theme #320
+
+## v2.1.0 2019-04-11
+
+- Added Gatsby theme #318
+
+## v2.0.9 2019-04-05
+
+- Rename internal const #312
+
+## v2.0.8 2019-04-05
+
+- Update MDX #311
+
+## v2.0.7 2019-04-05
+
+- Add `--no-html` flag back #295
+
+## v2.0.6 2019-03-28
+
+- Pin alpha version of MDX #302
+
+## v2.0.5 2019-03-23
+
+- Update remark-unwrap-images #289
+- Update webpack config merging #290
+
+## v2.0.4 2019-03-23
+
+- Fix for css-loader #288
+
+## v2.0.3 2019-03-23
+
+- Fix for building decks with Google Fonts #287
+
+## v2.0.2 2019-03-23
+
+- Fix syntax error in theme #286
+
+## v2.0.1 2019-03-23
+
+- Add language support to syntax highlighter themes #278
+
+## v2.0.0 2019-03-16
+
+- Simplified custom mdx loader, removing unused front-matter support
+- Simplified theming and default styles
+- Removes default Provider component with dot indicator
+- Uses Reach Router - resolves issues with focus trapping
+- Removed PDF export and screenshots from core CLI - now available with the `@mdx-deck/export` package
+- Removed built-in syntax highlighting
+- Removed `notes` language attribute for fenced code blocks
+- Refactored dev server
+
+## v1.10.2 2019-03-10
+
+- Fix bad release
+
+## v1.10.1 2019-03-10
+
+- Prevent Appear children from disappearing during slide transition #253
+
+## v1.10.0 2019-02-18
+
+- Update to Babel 7
+
+## v1.9.0 2019-02-18
+
+- Fix for font size in nested lists #204
+- Add `--hot-port` option to CLI #206
+- Add support for `.jsx` file extensions #239
+- Fix typos in syntax highlighting component #250
+- Add context to grid view #187
+- Add `--no-sandbox` option to CLI #200
+- Surface compilation errors from webpack #252
+
+## v1.8.2 2018-12-04
+
+- Bugfix for window check
+
+## v1.8.1 2018-11-27
+
+- Show Appear children in PDF export
+
+## v1.8.0 2018-11-27
+
+- Adds button to open new window for presenting in presenter mode
+
+## v1.7.14 2018-11-18
+
+- Fix typo in SlideDeck
+
+## v1.7.13 2018-11-18
+
+- Add overflow auto to FullScreenCode
+
+## v1.7.12 2018-11-18
+
+- Keep styles intact for Appear children
+- Fix prop types for Appear component
+- Add missing CLI option to docs
+
+## v1.7.11 2018-11-18
+
+- Update remark-unwrap-images
+
+## v1.7.10 2018-11-12
+
+- Update dependencies
+
+## v1.7.9 2018-11-12
+
+- Update dependencies
+
+## v1.7.8 2018-11-12
+
+- Fix typo in Root prop types
+- Edit docs
+
+## v1.7.7 2018-09-22
+
+- Remove overflow hidden styles from body
+- Adds prettier
+
+## v1.7.6 2018-09-22
+
+- Changes styles to use `translate3d`
+- Add support for page up and page down keys
+
+## v1.7.5 2018-09-22
+
+- Add `Horizontal` layout component
+
+## v1.7.4 2018-09-15
+
+- Add `--host` option
 
 ## v1.7.3 2018-09-05
 
